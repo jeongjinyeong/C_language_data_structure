@@ -89,6 +89,27 @@ int main()
 int moveMaxToFront(ListNode **ptrHead)
 {
     /* add your code here */
+		//ptrHead: ll->head의 주소값
+		int idx, max_idx, max = 0;
+		ListNode *cur = (*ptrHead);
+		while(cur!=NULL){
+			if(cur->item>max){
+				max = cur->item;
+				max_idx = idx;
+			}
+			cur = cur->next;
+			idx++;
+		}
+		cur = (*ptrHead);
+		max_idx--;
+		while(max_idx--){
+			cur = cur->next;
+		}
+		//cur는 max 앞 노드
+		ListNode* temp = cur->next;
+		cur->next = temp->next;
+		temp->next = *ptrHead;
+		*ptrHead = temp;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
