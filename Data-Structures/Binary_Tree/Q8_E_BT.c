@@ -79,6 +79,7 @@ int main()
             case 2:
                 printf("\nThe values stored in all nodes of the tree that has at least one great-grandchild are: ");
                 hasGreatGrandchild(root);
+                printf("\n\n");
                 removeAll(&root);
                 break;
             case 0:
@@ -103,6 +104,14 @@ int main()
 int hasGreatGrandchild(BTNode *node)
 {
 	/* add your code here */
+    if(node==NULL)
+        return 0;
+    int leftdepth = hasGreatGrandchild(node->left)+1;
+    int rightdepth = hasGreatGrandchild(node->right)+1;
+    int depth = leftdepth>rightdepth?leftdepth:rightdepth;
+    if(depth>3)
+        printf("%d ", node->item);
+    return depth;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

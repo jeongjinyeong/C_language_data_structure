@@ -70,8 +70,8 @@ int main()
                 printf("\n");
                 break;
             case 2:
-                c = maxHeight(root);
-                printf("The maximum height of the binary tree is: %d\n",c);
+                int h = maxHeight(root);
+                printf("The maximum height of the binary tree is: %d\n",h);
                 removeAll(&root);
                 break;
             case 0:
@@ -95,9 +95,15 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int maxHeight(BTNode *node)
-
 {
     /* add your code here */
+    if(node==NULL)
+        return -1;
+    else{
+        int leftHeight = maxHeight(node->left)+1;
+        int rightHeight = maxHeight(node->right)+1;
+        return leftHeight>rightHeight?leftHeight:rightHeight;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

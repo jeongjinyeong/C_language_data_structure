@@ -79,21 +79,21 @@ int main()
 
 		switch (c)
 		{
-		case 1:
-			printf("Enter expressions without spaces to check whether it is balanced or not: ");
-			scanf("%s", str);
-			break;
-        case 2:
-            if(balanced(str))
-                printf("not balanced!\n");
-            else
-                printf("balanced!\n");
-			break;
-		case 0:
-			break;
-		default:
-			printf("Choice unknown;\n");
-			break;
+			case 1:
+				printf("Enter expressions without spaces to check whether it is balanced or not: ");
+				scanf("%s", str);
+				break;
+			case 2:
+				if(balanced(str))
+					printf("not balanced!\n");
+				else
+					printf("balanced!\n");
+				break;
+			case 0:
+				break;
+			default:
+				printf("Choice unknown;\n");
+				break;
 		}
 
 	}
@@ -105,6 +105,36 @@ int main()
 int balanced(char *expression)
 {
 /* add your code here */
+	int i=0;
+	Stack *s = malloc(sizeof(Stack));
+	s->ll.head = NULL;
+	s->ll.size = 0;
+	while(*(expression+i)!='\0'){
+		char temp = *(expression+i);
+		if(temp=='('||temp=='{'||temp=='[')
+			push(s, *(expression+i));
+		if(temp==')'&&pop(s)!='('){
+				free(s);
+				return 1;
+		}
+		if(temp=='}'&&pop(s)!='{'){
+				free(s);
+				return 1;
+		}
+		if(temp==']'&&pop(s)!='['){
+				free(s);
+				return 1;
+		}
+		i++;
+	}
+	if(isEmptyStack(s)){
+		free(s);
+		return 0;
+	}
+	else{
+		free(s);
+		return 1;
+	}
 }
 
 ////////////////////////////////////////////////////////////

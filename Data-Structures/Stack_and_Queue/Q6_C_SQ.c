@@ -112,6 +112,9 @@ int main()
 void removeUntil(Stack *s, int value)
 {
 /* add your code here */
+	while(s->ll.head!=NULL&&s->ll.size!=0&&peek(s)!=value){
+		pop(s);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
